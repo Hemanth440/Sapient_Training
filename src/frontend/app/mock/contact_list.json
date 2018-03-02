@@ -1,0 +1,24 @@
+{
+  "contactList": [
+    {
+      "name": "Brendan Eich",
+      "email": "brendane@gmail.com",
+      "phone": "9987654321"
+    },
+    {
+      "name": "Jordan Walke",
+      "email": "jordanw@gmail.com",
+      "phone": "9987654321"
+    },
+    {
+      "name": "Tobias Koppers",
+      "email": "tobiask@gmail.com",
+      "phone": "9987654324"
+    },
+    {
+      "name": "Ryan Dahl",
+      "email": "ryand@gmail.com",
+      "phone": "9987654364"
+    }
+  ]
+}

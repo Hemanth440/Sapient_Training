@@ -1,0 +1,12 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    display: block;
+    height: 20vh;
+    background-color: #f0f0f0;
+    color: #000000;
+    padding: 10px;
+}

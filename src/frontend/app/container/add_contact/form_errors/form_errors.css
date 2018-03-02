@@ -1,0 +1,10 @@
+.form-error {
+    padding: 10px;
+}
+
+.form-error > p {
+    margin: 0;
+    text-align: left;
+    color: #ff0000;
+}
+

@@ -1,0 +1,19 @@
+.tabs-list {
+    padding: 0;
+    margin: 0;
+}
+
+.tabs-list__item {
+    list-style: none;
+    display: inline-block;
+    padding: 10px;
+}
+
+.tabs-list__item > a {
+    text-decoration: none;
+    color: #cccccc;
+}
+
+a.active {
+    color: turquoise;
+}
