@@ -6,16 +6,21 @@ import App from './app.component'
 import {Route, BrowserRouter} from "react-router-dom";
 import {Home} from "./container/home/home.component";
 import {About} from "./container/about/about";
-import ContactDetails from "./container/contact_details/contact_details";
+import {Provider} from 'react-redux';
+import configureStore from "./store/configure_store";
+import ContactDetailsContainer from "./container/contact_details/contact_details_container";
 
+export const store = configureStore();
 
 ReactDOM.render(
-    <BrowserRouter>
-        <App>
-            <Route exact={true} path='/' component={Home}/>
-            <Route path='/contactDetails' component={ContactDetails}/>
-            <Route path='/about' component={About}/>
-        </App>
-    </BrowserRouter>
+    <Provider store={store}>
+        <BrowserRouter>
+            <App>
+                <Route exact={true} path='/' component={Home}/>
+                <Route path='/contactDetails' component={ContactDetailsContainer}/>
+                <Route path='/about' component={About}/>
+            </App>
+        </BrowserRouter>
+    </Provider>
     , document.getElementById('app')
 );
