@@ -1,40 +1,30 @@
 import React from 'react';
-import {ContactDetailsItem} from "./contact_detail_item/contact_detail_item";
 import {store} from "../../index";
-import {loadContacts} from "./contact_details_actions";
+import {getAllContacts} from "./contact_details_actions";
+import {Loader} from "../../shared/components/loader/loader";
+import {DefaultContacts} from "./default_contacts/default_contacts.component";
+import {NewContacts} from "./new_contacts/new_contacts.component";
 
 export default class ContactDetails extends React.Component {
 
     componentDidMount() {
-        store.dispatch(loadContacts());
+        store.dispatch(getAllContacts);
     }
 
     render() {
         const isLoading = this.props.defaultContactList.isLoading;
-        const contactList = [...this.props.defaultContactList.data, ...this.props.newContactList.data];
 
         if (isLoading) {
-            return null;
-        }
-        else if (!isLoading && !contactList) {
-            return <div>Unable to load the contacts</div>;
+            return <Loader/>;
+        } else if (!isLoading) {
+            return (
+                <div>
+                    <DefaultContacts defaultContactList={this.props.defaultContactList.data}/>
+                    <NewContacts newContactList={this.props.newContactList.data}/>
+                </div>
+            )
         }
 
-        const rows = contactList.map(
-            (contact, index) => <ContactDetailsItem key={index} contact={contact}/>);
-        return (
-            <div>
-                <table className="table table-hover">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email Id</th>
-                        <th>Phone</th>
-                    </tr>
-                    </thead>
-                    <tbody>{rows}</tbody>
-                </table>
-            </div>
-        )
+        return null;
     }
 }

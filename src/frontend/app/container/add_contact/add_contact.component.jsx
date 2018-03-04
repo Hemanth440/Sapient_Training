@@ -2,25 +2,30 @@ import React from 'react';
 import {ALERT_MESSAGES, FORM_ERROR_MESSAGES} from '../../constants/constants'
 import {FormErrors} from "./form_errors/form_errors.component";
 import {Alert} from "../../shared/components/alert/alert.component";
+import {store} from "../../index";
+import {addContact} from "./add_contact_actions";
+
+const formInitialState = {
+    fields: {
+        name: '',
+        email: '',
+        phone: ''
+    },
+    errors: {
+        name: '',
+        email: '',
+        phone: ''
+    },
+    isFormValid: false,
+    alertMessage: '',
+    isFormSubmissionSuccess: false
+};
 
 export default class AddContact extends React.Component {
+
     constructor(props) {
         super(props);
-        this.state = {
-            fields: {
-                name: '',
-                email: '',
-                phone: ''
-            },
-            errors: {
-                name: '',
-                email: '',
-                phone: ''
-            },
-            isFormValid: false,
-            alertMessage: '',
-            isFormSubmissionSuccess: false
-        };
+        this.state = JSON.parse(JSON.stringify(formInitialState));
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -32,6 +37,14 @@ export default class AddContact extends React.Component {
                 isFormSubmissionSuccess: true
             }
         );
+        store.dispatch(addContact(this.state.fields));
+        setTimeout(function () {
+            this.setState(
+                {
+                    ...JSON.parse(JSON.stringify(formInitialState))
+                }
+            )
+        }.bind(this), 1000);
     }
 
     handleUserInput(e) {

@@ -1,8 +1,12 @@
 import ContactsApi from "../../utils/contacts_service";
-import {LOAD_CONTACTS_FAILED_ACTION, LOAD_CONTACTS_SUCCESS_ACTION} from "../../state/actions/contact_list.actions";
+import {
+    LOAD_CONTACTS_ACTION, LOAD_CONTACTS_FAILED_ACTION,
+    LOAD_CONTACTS_SUCCESS_ACTION
+} from "../../state/actions/contact_list.actions";
 
 
-function getAllContacts(dispatch) {
+export function getAllContacts(dispatch) {
+    dispatch(loadContacts());
     ContactsApi.getContactsList()
         .then(data => {
             let contactList = data.contactList;
@@ -14,7 +18,7 @@ function getAllContacts(dispatch) {
 }
 
 export function loadContacts() {
-    return getAllContacts;
+    return {type: LOAD_CONTACTS_ACTION, payload: null};
 }
 
 export function loadContactsSuccess(contacts) {
