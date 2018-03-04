@@ -1,4 +1,4 @@
-import ContactsApi from "../../utils/contacts_service";
+import ContactsApi from "../../utils/contacts/contacts_service";
 import {
     LOAD_CONTACTS_ACTION, LOAD_CONTACTS_FAILED_ACTION,
     LOAD_CONTACTS_SUCCESS_ACTION

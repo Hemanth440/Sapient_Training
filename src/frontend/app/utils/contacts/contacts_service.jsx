@@ -1,4 +1,4 @@
-import {BASE_URL} from "../constants/constants";
+import {BASE_URL} from "../../constants/constants";
 
 class ContactsApi {
     static getContactsList() {
