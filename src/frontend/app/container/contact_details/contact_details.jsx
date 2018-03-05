@@ -45,7 +45,8 @@ export default class ContactDetails extends React.Component {
                 <div>
                     <Search query={query} handleChange={this.props.handleChange}/>
                     <DefaultContacts defaultContactList={defaultContactList}/>
-                    <NewContacts newContactList={newContactList} handleEdit={this.handleEdit}/>
+                    <NewContacts newContactList={newContactList} handleEdit={this.handleEdit}
+                                 handleDelete={this.props.handleDelete}/>
                 </div>
             )
         }

@@ -1,7 +1,7 @@
 import React from 'react';
 import './contact_detail_item.css';
 
-export const ContactDetailsItem = ({contact, handleEdit}) =>
+export const ContactDetailsItem = ({contact, handleEdit, handleDelete}) =>
     <tr>
         <td>{contact.name}</td>
         <td>{contact.email}</td>
@@ -14,4 +14,12 @@ export const ContactDetailsItem = ({contact, handleEdit}) =>
                 </td> :
                 null
         }
-    </tr>
+        {
+            handleDelete ?
+                <td>
+                    <span className="glyphicon glyphicon-remove contact_detail_item__delete"
+                          onClick={() => handleDelete(contact)}></span>
+                </td> :
+                null
+        }
+    </tr>;

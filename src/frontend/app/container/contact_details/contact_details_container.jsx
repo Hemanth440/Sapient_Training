@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ContactDetails from './contact_details';
-import {editContact, searchContacts} from "./contact_details_actions";
+import {deleteContact, editContact, searchContacts} from "./contact_details_actions";
 
 function mapStateToProps(state) {
     return {
@@ -19,6 +19,10 @@ function mapEventsToProps(dispatch) {
 
         handleEdit(contact) {
             dispatch(editContact(contact));
+        },
+
+        handleDelete(contact) {
+            dispatch(deleteContact(contact));
         }
     }
 }

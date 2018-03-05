@@ -1,9 +1,10 @@
 import ContactsApi from "../../utils/contacts/contacts_service";
 import {
+    DELETE_CONTACT_ACTION,
     EDIT_CONTACT_ACTION,
     LOAD_CONTACTS_ACTION, LOAD_CONTACTS_FAILED_ACTION,
     LOAD_CONTACTS_SUCCESS_ACTION, SEARCH_CONTACTS_ACTION
-} from "../../state/actions/contact_list.actions";
+} from "../../store/actions/contact_list.actions";
 
 
 export function getAllContacts(dispatch) {
@@ -36,4 +37,8 @@ export function searchContacts(payload) {
 
 export function editContact(payload) {
     return {type: EDIT_CONTACT_ACTION, payload}
+}
+
+export function deleteContact(contact) {
+    return {type: DELETE_CONTACT_ACTION, payload: contact}
 }

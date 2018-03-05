@@ -16,6 +16,7 @@ const formInitialState = {
         email: '',
         phone: ''
     },
+    hasError: false,
     isFormValid: false,
     alertMessage: '',
     isFormSubmissionSuccess: false
@@ -63,6 +64,7 @@ export default class AddContact extends React.Component {
     validateField(key, value) {
         let errors = this.state.errors;
         let isFormValid = true;
+        this.state.hasError = false;
 
         if (!value && !value.length) {
             errors[key] = FORM_ERROR_MESSAGES[key].required;
@@ -84,6 +86,7 @@ export default class AddContact extends React.Component {
         Object.keys(errors).every(field => {
             if (errors[field] && !!errors[field].length) {
                 isFormValid = false;
+                this.state.hasError = true;
             }
 
             return isFormValid;
@@ -118,9 +121,13 @@ export default class AddContact extends React.Component {
                     <h3>Add Contact</h3>
                     <Alert message={this.state.alertMessage}
                            isFormSubmissionSuccess={this.state.isFormSubmissionSuccess}/>
-                    <div className="panel panel-default">
-                        <FormErrors formErrors={this.state.errors}/>
-                    </div>
+                    {
+                        this.state.hasError ?
+                            <div className="panel panel-default">
+                                <FormErrors formErrors={this.state.errors}/>
+                            </div> : null
+                    }
+
                     <div className={`form-group ${this.errorClass(this.state.errors.name)}`}>
                         <label htmlFor="name">Name</label>
                         <input type="text" className="form-control"

@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     ADD_NEW_CONTACT_ACTION, ADD_NEW_CONTACT_USER_INPUT_ACTION, RESET_EDIT_CONTACT_ACTION, UPDATE_CONTACT_ACTION
-} from "../../state/actions/contact_list.actions";
+} from "../../store/actions/contact_list.actions";
 
 export function addContact(contact) {
     return function (dispatch, getState) {
