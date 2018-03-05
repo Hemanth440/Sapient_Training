@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ContactDetails from './contact_details';
-import {SEARCH_CONTACTS_ACTION} from "../../state/actions/contact_list.actions";
+import {editContact, searchContacts} from "./contact_details_actions";
 
 function mapStateToProps(state) {
     return {
@@ -14,10 +14,11 @@ function mapStateToProps(state) {
 function mapEventsToProps(dispatch) {
     return {
         handleChange(e) {
-            dispatch({
-                type: SEARCH_CONTACTS_ACTION,
-                payload: e.target.value
-            })
+            dispatch(searchContacts(e.target.value));
+        },
+
+        handleEdit(contact) {
+            dispatch(editContact(contact));
         }
     }
 }

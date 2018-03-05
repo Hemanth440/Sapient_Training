@@ -1,5 +1,5 @@
 import React from 'react';
-import AddContact from "../add_contact/add_contact.component";
+import AddContactContainer from "../add_contact/add_contact_container";
 
 export const Home = () =>
-    <AddContact/>
+    <AddContactContainer/>

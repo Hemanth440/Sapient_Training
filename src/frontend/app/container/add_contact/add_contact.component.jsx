@@ -39,6 +39,7 @@ export default class AddContact extends React.Component {
         );
         store.dispatch(addContact(this.state.fields));
         setTimeout(function () {
+            this.props.resetForm();
             this.setState(
                 {
                     ...JSON.parse(JSON.stringify(formInitialState))
@@ -101,6 +102,16 @@ export default class AddContact extends React.Component {
     }
 
     render() {
+        const fields = this.props.editContact;
+        if (!!Object.keys(fields).length) {
+            const isFormValid = true;
+            this.state = {
+                ...this.state,
+                isFormValid,
+                fields
+            }
+        }
+
         return (
             <div>
                 <form className="contactForm">

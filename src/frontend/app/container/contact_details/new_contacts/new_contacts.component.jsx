@@ -4,9 +4,9 @@ import {ContactsWrapper} from "../contacts_wrapper";
 import {Error} from "../../../shared/components/error/error.component";
 import {NoData} from "../../../shared/components/no_data/no_data.component";
 
-export const NewContacts = ({newContactList}) => {
+export const NewContacts = ({newContactList, handleEdit}) => {
     const rows = newContactList.map(
-        (newContact, index) => <ContactDetailsItem key={index} contact={newContact}/>);
+        (newContact, index) => <ContactDetailsItem handleEdit={handleEdit} key={index} contact={newContact}/>);
 
     return (
         <div>
