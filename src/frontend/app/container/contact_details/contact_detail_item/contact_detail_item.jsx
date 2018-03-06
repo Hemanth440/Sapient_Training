@@ -6,6 +6,7 @@ export const ContactDetailsItem = ({contact, handleEdit, handleDelete}) =>
         <td>{contact.name}</td>
         <td>{contact.email}</td>
         <td>{contact.phone}</td>
+        <td>{contact.department}</td>
         {
             handleEdit ?
                 <td>

@@ -9,6 +9,9 @@ export const FORM_ERROR_MESSAGES = {
     phone: {
         required: 'Phone number is required',
         invalid: 'Phone number length must be 10'
+    },
+    department: {
+        required: 'Department is required'
     }
 };
 

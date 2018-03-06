@@ -4,17 +4,20 @@ import {FormErrors} from "./form_errors/form_errors.component";
 import {Alert} from "../../shared/components/alert/alert.component";
 import {store} from "../../index";
 import {addContact} from "./add_contact_actions";
+import {AddContactButton} from "./form_errors/add_contact_submit_button";
 
 const formInitialState = {
     fields: {
         name: '',
         email: '',
-        phone: ''
+        phone: '',
+        department: ''
     },
     errors: {
         name: '',
         email: '',
-        phone: ''
+        phone: '',
+        department: ''
     },
     hasError: false,
     isFormValid: false,
@@ -30,7 +33,7 @@ export default class AddContact extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit(e) {
+    handleSubmit(e, history) {
         e.preventDefault();
         this.setState(
             {
@@ -45,7 +48,8 @@ export default class AddContact extends React.Component {
                 {
                     ...JSON.parse(JSON.stringify(formInitialState))
                 }
-            )
+            );
+            history.push('/contactDetails');
         }.bind(this), 1000);
     }
 
@@ -78,6 +82,9 @@ export default class AddContact extends React.Component {
                     break;
                 case 'phone':
                     errors.phone = (value.length !== 10) ? FORM_ERROR_MESSAGES[key].invalid : '';
+                    break;
+                case 'department':
+                    errors.department = '';
                     break;
 
             }
@@ -149,10 +156,16 @@ export default class AddContact extends React.Component {
                                value={this.state.fields['phone']}
                                name="phone"/>
                     </div>
-                    <button type="submit" onClick={this.handleSubmit} disabled={!this.state.isFormValid}
-                            className="btn btn-primary">
-                        Submit
-                    </button>
+                    <div className={`form-group ${this.errorClass(this.state.errors.department)}`}>
+                        <label htmlFor="department">Department</label>
+                        <select className="form-control" onChange={(e) => this.handleUserInput(e)} name="department"
+                                value={this.state.fields['department']}>
+                            <option value=''>Select</option>
+                            <option value='Development'>Development</option>
+                            <option value='Testing'>Testing</option>
+                        </select>
+                    </div>
+                    <AddContactButton handleSubmit={this.handleSubmit} isFormValid={this.state.isFormValid}/>
                 </form>
             </div>
         )

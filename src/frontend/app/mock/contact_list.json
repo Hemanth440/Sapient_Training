@@ -4,25 +4,29 @@
       "id": 1,
       "name": "Brendan Eich",
       "email": "brendane@gmail.com",
-      "phone": "9987654321"
+      "phone": "9987654321",
+      "department": "Development"
     },
     {
       "id": 2,
       "name": "Jordan Walke",
       "email": "jordanw@gmail.com",
-      "phone": "9987654321"
+      "phone": "9987654321",
+      "department": "Development"
     },
     {
       "id": 3,
       "name": "Tobias Koppers",
       "email": "tobiask@gmail.com",
-      "phone": "9987654324"
+      "phone": "9987654324",
+      "department": "Development"
     },
     {
       "id": 4,
       "name": "Ryan Dahl",
       "email": "ryand@gmail.com",
-      "phone": "9987654364"
+      "phone": "9987654364",
+      "department": "Development"
     }
   ]
 }

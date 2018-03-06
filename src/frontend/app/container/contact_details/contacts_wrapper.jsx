@@ -8,6 +8,7 @@ export const ContactsWrapper = ({rows}) =>
                 <th>Name</th>
                 <th>Email Id</th>
                 <th>Phone</th>
+                <th>Department</th>
             </tr>
             </thead>
             <tbody>{rows}</tbody>
