@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Tab/> should contain NavLink 1`] = `
+<NavLink
+  activeClassName="active"
+  ariaCurrent="true"
+  exact={false}
+  to="/"
+/>
+`;
