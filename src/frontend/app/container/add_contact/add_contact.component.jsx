@@ -81,7 +81,7 @@ export default class AddContact extends React.Component {
                     errors.email = (!value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) ? FORM_ERROR_MESSAGES[key].invalid : '';
                     break;
                 case 'phone':
-                    errors.phone = (value.length !== 10) ? FORM_ERROR_MESSAGES[key].invalid : '';
+                    errors.phone = isNaN(value) || (value.length !== 10) ? FORM_ERROR_MESSAGES[key].invalid : '';
                     break;
                 case 'department':
                     errors.department = '';
