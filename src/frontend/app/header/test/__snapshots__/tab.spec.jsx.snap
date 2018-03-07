@@ -4,7 +4,9 @@ exports[`<Tab/> should contain NavLink 1`] = `
 <NavLink
   activeClassName="active"
   ariaCurrent="true"
-  exact={false}
+  exact={true}
   to="/"
-/>
+>
+  Home
+</NavLink>
 `;

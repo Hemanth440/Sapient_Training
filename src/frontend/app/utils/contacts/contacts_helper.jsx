@@ -3,10 +3,10 @@ export function getContactsByIds(contacts = [], ids) {
 }
 
 export function getContactsIdsByQuery(contacts = [], query) {
-    const regex = new RegExp(`^${query}`, 'gi');
+    const regex = new RegExp(query, 'gi');
     const filteredDataIds = [];
     contacts.forEach((contact => {
-        if (regex.test(contact.name) || regex.test(contact.email) || regex.test(contact.phone)) {
+        if (regex.test(contact.name) || regex.test(contact.email) || regex.test(contact.phone) || regex.test(contact.department)) {
             filteredDataIds.push(contact.id);
         }
     }));

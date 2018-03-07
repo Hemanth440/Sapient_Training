@@ -5,7 +5,7 @@ import {getContactsIdsByQuery} from "../../utils/contacts/contacts_helper";
 
 const initialState = {
     data: [],
-    filteredData: []
+    filteredDataIds: []
 };
 
 export default function newContactList(state = initialState, action) {

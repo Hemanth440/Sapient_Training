@@ -9,14 +9,16 @@ import {
 
 export function getAllContacts(dispatch) {
     dispatch(loadContacts());
-    ContactsApi.getContactsList()
-        .then(data => {
-            let contactList = data.contactList;
-            dispatch(loadContactsSuccess(contactList))
-        })
-        .catch(err => {
-            dispatch(loadContactFailed(err));
-        });
+    setTimeout(function () {
+        ContactsApi.getContactsList()
+            .then(data => {
+                let contactList = data.contactList;
+                dispatch(loadContactsSuccess(contactList))
+            })
+            .catch(err => {
+                dispatch(loadContactFailed(err));
+            });
+    }, 500);
 }
 
 export function loadContacts() {
