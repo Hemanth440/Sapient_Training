@@ -17,7 +17,9 @@ function mapEventsToProps(dispatch) {
 
         resetForm() {
             dispatch(resetForm());
-        }
+        },
+
+        dispatch
     };
 }
 

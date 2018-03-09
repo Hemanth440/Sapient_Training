@@ -23,7 +23,8 @@ function mapEventsToProps(dispatch) {
 
         handleDelete(contact) {
             dispatch(deleteContact(contact));
-        }
+        },
+        dispatch
     }
 }
 

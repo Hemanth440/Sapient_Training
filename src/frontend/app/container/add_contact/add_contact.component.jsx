@@ -2,7 +2,6 @@ import React from 'react';
 import {ALERT_MESSAGES, FORM_ERROR_MESSAGES} from '../../constants/constants'
 import {FormErrors} from "./form_errors/form_errors.component";
 import {Alert} from "../../shared/components/alert/alert.component";
-import {store} from "../../index";
 import {addContact} from "./add_contact_actions";
 import {AddContactButton} from "./form_errors/add_contact_submit_button";
 
@@ -41,7 +40,7 @@ export default class AddContact extends React.Component {
                 isFormSubmissionSuccess: true
             }
         );
-        store.dispatch(addContact(this.state.fields));
+        this.props.dispatch(addContact(this.state.fields));
         setTimeout(function () {
             this.props.resetForm();
             this.setState(

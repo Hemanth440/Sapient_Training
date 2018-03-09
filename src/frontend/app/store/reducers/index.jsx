@@ -4,6 +4,8 @@ import newContactList from './new_contact_list.reducer';
 import searchContacts from './search_contacts.reducer';
 import editContact from './edit_contact.reducer';
 
-const rootReducer = combineReducers({defaultContactList, newContactList, searchContacts, editContact});
+const reducers = {defaultContactList, newContactList, searchContacts, editContact};
+
+const rootReducer = combineReducers({...reducers});
 
 export default rootReducer;
