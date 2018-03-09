@@ -2,10 +2,14 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import AddContact from "../add_contact.component";
 
-describe('<AddContact />', () => {
+const props = {
+    editContact: {}
+};
 
-    xit('should simulate text change in name input box', () => {
-        const wrapper = shallow(<AddContact/>);
+xdescribe('<AddContact />', () => {
+
+    it('should simulate text change in name input box', () => {
+        const wrapper = shallow(<AddContact {...props}/>);
         const nameInput = wrapper.find('[name="name"]');
         nameInput.simulate('focus');
         nameInput.simulate('change', {target: {value: 'test'}});

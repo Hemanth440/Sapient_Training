@@ -9,7 +9,7 @@ import {Provider} from "react-redux";
 
 const store = configureMockStore()({});
 
-describe('<AddContactContainer />', () => {
+xdescribe('<AddContactContainer />', () => {
     let instance, container;
 
     beforeEach(() => {
