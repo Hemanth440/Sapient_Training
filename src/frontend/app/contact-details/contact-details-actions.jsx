@@ -1,4 +1,4 @@
-import ContactsApi from "../utils/contacts/contacts-service";
+import ContactsApi from "../utils/contacts/contacts.service";
 import {
     DELETE_CONTACT_ACTION,
     EDIT_CONTACT_ACTION,
