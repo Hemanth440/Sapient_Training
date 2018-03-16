@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-import defaultContactList from './default_contact_list.reducer';
-import newContactList from './new_contact_list.reducer';
-import searchContacts from './search_contacts.reducer';
-import editContact from './edit_contact.reducer';
+import defaultContactList from './default-contact-list.reducer';
+import newContactList from './new-contact-list.reducer';
+import searchContacts from './search-contacts.reducer';
+import editContact from './edit-contact.reducer';
 
 const reducers = {defaultContactList, newContactList, searchContacts, editContact};
 

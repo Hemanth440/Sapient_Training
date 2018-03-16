@@ -7,6 +7,7 @@
     "test": "jest --watch --coverage",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
+    "test-debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
     "devNoServererver": "webpack --d --watch",
     "dev": "./node_modules/.bin/webpack-dev-server --content-base=src/frontend",
     "build": "./node_modules/.bin/webpack -d"
@@ -56,6 +57,7 @@
     "file-loader": "^1.1.10",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^22.4.2",
+    "node-debug": "^0.1.0",
     "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",

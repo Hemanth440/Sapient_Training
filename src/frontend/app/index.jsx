@@ -4,11 +4,11 @@ import '../../../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../../../node_modules/bootstrap/dist/css/bootstrap-theme.css'
 import App from './app.component'
 import {Route, BrowserRouter, Redirect, Switch} from "react-router-dom";
-import {Home} from "./container/home/home.component";
-import {About} from "./container/about/about";
+import {Home} from "./home/home.component";
+import {About} from "./about/about";
 import {Provider} from 'react-redux';
-import configureStore from "./store/configure_store";
-import ContactDetailsContainer from "./container/contact_details/contact_details_container";
+import configureStore from "./store/configure-store";
+import ContactDetailsContainer from "./contact-details/contact-details-container";
 
 const store = configureStore();
 
