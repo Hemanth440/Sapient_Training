@@ -2,8 +2,9 @@ import React from 'react';
 import {ALERT_MESSAGES, FORM_ERROR_MESSAGES} from '../constants/constants'
 import {FormErrors} from "./form-errors/form-errors.component";
 import {Alert} from "../core/components/alert/alert.component";
-import {addContact} from "./add-contact-actions";
+import {addContact, handleUserInput, resetForm} from "./add-contact-actions";
 import {AddContactButton} from "./form-errors/add-contact-submit-button";
+import {connect} from "react-redux";
 
 const formInitialState = {
     fields: {
@@ -24,7 +25,7 @@ const formInitialState = {
     isFormSubmissionSuccess: false
 };
 
-export default class AddContact extends React.Component {
+class AddContact extends React.Component {
 
     constructor(props) {
         super(props);
@@ -170,3 +171,24 @@ export default class AddContact extends React.Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        editContact: state.editContact
+    }
+}
+
+function mapEventsToProps(dispatch) {
+    return {
+        
+        resetForm() {
+            dispatch(resetForm());
+        },
+
+        dispatch
+    };
+}
+
+const AddContactContainer = connect(mapStateToProps, mapEventsToProps)(AddContact);
+
+export default AddContactContainer;

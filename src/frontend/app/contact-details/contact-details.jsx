@@ -1,12 +1,13 @@
 import React from 'react';
-import {getAllContacts} from "./contact-details-actions";
+import {deleteContact, editContact, getAllContacts, searchContacts} from "./contact-details-actions";
 import {Loader} from "../core/components/loader/loader";
 import {DefaultContacts} from "./default-contacts/default-contacts.component";
 import {NewContacts} from "./new-contacts/new-contacts.component";
 import {getContactsByIds} from "../utils/contacts/contacts-helper";
 import {Search} from "../core/components/search/search.component";
+import {connect} from "react-redux";
 
-export default class ContactDetails extends React.Component {
+class ContactDetails extends React.Component {
 
     constructor(props) {
         super(props);
@@ -53,3 +54,32 @@ export default class ContactDetails extends React.Component {
         return null;
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        defaultContactList: state.defaultContactList,
+        newContactList: state.newContactList,
+        searchContacts: state.searchContacts
+    }
+}
+
+function mapEventsToProps(dispatch) {
+    return {
+        handleChange(e) {
+            dispatch(searchContacts(e.target.value));
+        },
+
+        handleEdit(contact) {
+            dispatch(editContact(contact));
+        },
+
+        handleDelete(contact) {
+            dispatch(deleteContact(contact));
+        },
+        dispatch
+    }
+}
+
+const ContactDetailsContainer = connect(mapStateToProps, mapEventsToProps)(ContactDetails);
+
+export default ContactDetailsContainer;

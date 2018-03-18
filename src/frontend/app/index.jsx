@@ -8,7 +8,7 @@ import {Home} from "./home/home.component";
 import {About} from "./about/about";
 import {Provider} from 'react-redux';
 import configureStore from "./store/configure-store";
-import ContactDetailsContainer from "./contact-details/contact-details-container";
+import ContactDetailsContainer from "./contact-details/contact-details";
 
 const store = configureStore();
 
