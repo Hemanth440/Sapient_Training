@@ -5,6 +5,7 @@ import {Alert} from "../core/components/alert/alert.component";
 import {addContact, handleUserInput, resetForm} from "./add-contact-actions";
 import {AddContactButton} from "./form-errors/add-contact-submit-button";
 import {connect} from "react-redux";
+import {validateAddContactField} from "../utils/contacts/contacts-helper";
 
 const formInitialState = {
     fields: {
@@ -66,43 +67,13 @@ class AddContact extends React.Component {
 
 
     validateField(key, value) {
-        let errors = this.state.errors;
-        let isFormValid = true;
-        this.state.hasError = false;
-
-        if (!value && !value.length) {
-            errors[key] = FORM_ERROR_MESSAGES[key].required;
-        } else {
-            switch (key) {
-                case 'name':
-                    errors.name = '';
-                    break;
-                case 'email':
-                    errors.email = (!value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) ? FORM_ERROR_MESSAGES[key].invalid : '';
-                    break;
-                case 'phone':
-                    errors.phone = isNaN(value) || (value.length !== 10) ? FORM_ERROR_MESSAGES[key].invalid : '';
-                    break;
-                case 'department':
-                    errors.department = '';
-                    break;
-
-            }
-        }
-
-        Object.keys(errors).every(field => {
-            if (errors[field] && !!errors[field].length) {
-                isFormValid = false;
-                this.state.hasError = true;
-            }
-
-            return isFormValid;
-        });
+        let {errors, isFormValid, hasError} = validateAddContactField(key, value, this.state.errors);
 
         this.setState(
             {
                 errors,
-                isFormValid
+                isFormValid,
+                hasError
             }
         )
     }
@@ -180,7 +151,7 @@ function mapStateToProps(state) {
 
 function mapEventsToProps(dispatch) {
     return {
-        
+
         resetForm() {
             dispatch(resetForm());
         },
