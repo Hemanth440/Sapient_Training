@@ -1,4 +1,4 @@
-import {FORM_ERROR_MESSAGES} from "../../constants/constants";
+import { FORM_ERROR_MESSAGES } from './../../constants/constants';
 
 export function validateAddContactField(key, value, errors) {
     let isFormValid = true;
@@ -36,6 +36,14 @@ export function validateAddContactField(key, value, errors) {
     return {errors, isFormValid, hasError};
 }
 
+export function isValidEmail(input) {
+    return input.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+}
+
+export function isValidPhone(input) {
+    return !isNaN(input) && (input.length === 10);
+}
+
 export function getContactsByIds(contacts = [], ids) {
     if (!ids) {
         return contacts;
@@ -54,4 +62,30 @@ export function getContactsIdsByQuery(contacts = [], query = '') {
         })) : [];
 
     return filteredDataIds;
+}
+
+export const validate = values => {
+	const errors = {};
+
+	if (!values.name) {
+		errors.name = FORM_ERROR_MESSAGES.name.required;
+	}
+
+	if (!values.email) {
+		errors.email = FORM_ERROR_MESSAGES.email.required;
+	} else if (!isValidEmail(values.email)) {
+		errors.email = FORM_ERROR_MESSAGES.email.invalid;
+	}
+
+	if (!values.phone) {
+		errors.phone = FORM_ERROR_MESSAGES.phone.required;
+	} else if (!isValidPhone(values.phone)) {
+		errors.phone = FORM_ERROR_MESSAGES.phone.invalid;
+	}
+
+	if (!values.department) {
+		errors.department = FORM_ERROR_MESSAGES.department.required;
+	}
+
+	return errors;
 }
