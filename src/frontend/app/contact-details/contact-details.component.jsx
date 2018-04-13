@@ -1,5 +1,5 @@
 import React from 'react';
-import {deleteContact, editContact, getAllContacts, searchContacts} from "./contact-details-actions";
+import {deleteContact, editContact, getAllContacts, searchContacts, loadContacts} from "./contact-details-actions";
 import {Loader} from "../core/components/loader/loader";
 import {DefaultContacts} from "./default-contacts/default-contacts.component";
 import {NewContacts} from "./new-contacts/new-contacts.component";
@@ -15,7 +15,8 @@ class ContactDetails extends React.Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(getAllContacts);
+        // this.props.dispatch(getAllContacts);
+        this.props.dispatch(loadContacts());
     }
 
     handleEdit(contact) {

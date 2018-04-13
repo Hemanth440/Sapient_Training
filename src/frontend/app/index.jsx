@@ -1,3 +1,5 @@
+import 'regenerator-runtime/runtime';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.css'
@@ -8,9 +10,15 @@ import {Home} from "./home/home.component";
 import {About} from "./about/about";
 import {Provider} from 'react-redux';
 import configureStore from "./store/configure-store";
-import ContactDetailsContainer from "./contact-details/contact-details";
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from './sagas';
+import ContactDetailsContainer from './contact-details/contact-details.component';
 
-const store = configureStore();
+const sagaMiddleware = createSagaMiddleware();
+
+const store = configureStore(thunk, logger, sagaMiddleware);
 
 ReactDOM.render(
     <Provider store={store}>
@@ -27,3 +35,5 @@ ReactDOM.render(
     </Provider>
     , document.getElementById('app')
 );
+
+sagaMiddleware.run(rootSaga);
