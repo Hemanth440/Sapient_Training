@@ -6,6 +6,7 @@ import {NewContacts} from "./new-contacts/new-contacts.component";
 import {getContactsByIds} from "../utils/contacts/contacts-helper";
 import {Search} from "../core/components/search/search.component";
 import {connect} from "react-redux";
+import { DefaultContactsListSelector, NewContactsListSelector } from './../selectors/contact-details.selector';
 
 class ContactDetails extends React.Component {
 
@@ -15,7 +16,6 @@ class ContactDetails extends React.Component {
     }
 
     componentDidMount() {
-        // this.props.dispatch(getAllContacts);
         this.props.dispatch(loadContacts());
     }
 
@@ -25,26 +25,19 @@ class ContactDetails extends React.Component {
     }
 
     render() {
-        const isLoading = this.props.defaultContactList.isLoading;
+        const {
+            isDefaultContactsLoading, 
+            defaultContactList, 
+            newContactList, 
+            searchQuery
+        }   = this.props;
 
-        if (isLoading) {
+        if (isDefaultContactsLoading) {
             return <Loader/>;
-        } else if (!isLoading) {
-            const query = this.props.searchContacts.query;
-            const defaultContactIds = this.props.defaultContactList.filteredDataIds || [];
-            let defaultContactList = this.props.defaultContactList.data;
-
-            const newContactIds = this.props.newContactList.filteredDataIds || [];
-            let newContactList = this.props.newContactList.data;
-
-            if (!!query.length) {
-                defaultContactList = getContactsByIds(defaultContactList, defaultContactIds);
-                newContactList = getContactsByIds(newContactList, newContactIds);
-            }
-
+        } else if (!isDefaultContactsLoading) {
             return (
                 <div>
-                    <Search query={query} handleChange={this.props.handleChange}/>
+                    <Search query={searchQuery} handleChange={this.props.handleChange}/>
                     <DefaultContacts defaultContactList={defaultContactList}/>
                     <NewContacts newContactList={newContactList} handleEdit={this.handleEdit}
                                  handleDelete={this.props.handleDelete}/>
@@ -58,9 +51,10 @@ class ContactDetails extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        defaultContactList: state.defaultContactList,
-        newContactList: state.newContactList,
-        searchContacts: state.searchContacts
+        isDefaultContactsLoading: state.defaultContactList.isLoading,
+        defaultContactList: DefaultContactsListSelector(state),
+        newContactList: NewContactsListSelector(state),
+        searchQuery: state.searchContacts.query
     }
 }
 

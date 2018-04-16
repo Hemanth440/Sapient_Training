@@ -44,14 +44,18 @@ export function isValidPhone(input) {
     return !isNaN(input) && (input.length === 10);
 }
 
-export function getContactsByIds(contacts = [], ids) {
-    if (!ids) {
+export function getContactsByIds(contacts = [], ids, query) {
+    if (!query && (!ids || !ids.length)) {
         return contacts;
     }
     return !!contacts ? contacts.filter(contact => ids.indexOf(contact.id) !== -1) : [];
 }
 
 export function getContactsIdsByQuery(contacts = [], query = '') {
+    if(!query) {
+        return [];
+    }
+    
     const regex = new RegExp(query || '', 'gi');
     const filteredDataIds = [];
     !!contacts ?

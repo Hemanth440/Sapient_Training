@@ -1,25 +1,9 @@
-import ContactsApi from "../utils/contacts/contacts.service";
 import {
     DELETE_CONTACT_ACTION,
     EDIT_CONTACT_ACTION,
     LOAD_CONTACTS_ACTION, LOAD_CONTACTS_FAILED_ACTION,
     LOAD_CONTACTS_SUCCESS_ACTION, SEARCH_CONTACTS_ACTION
 } from "../store/actions/contact-list.actions";
-
-
-export function getAllContacts(dispatch) {
-    dispatch(loadContacts());
-    setTimeout(function () {
-        ContactsApi.getContactsList()
-            .then(data => {
-                let contactList = data.contactList;
-                dispatch(loadContactsSuccess(contactList))
-            })
-            .catch(err => {
-                dispatch(loadContactFailed(err));
-            });
-    }, 500);
-}
 
 export function loadContacts() {
     return {type: LOAD_CONTACTS_ACTION, payload: null};
